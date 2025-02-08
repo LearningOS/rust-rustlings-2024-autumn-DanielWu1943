@@ -10,6 +10,8 @@ fn factorial(num: u64) -> u64 {
     // - additional variables
     // For an extra challenge, don't use:
     // - recursion
+    //.product() 是一个 迭代器方法，用于计算迭代器中所有元素的乘积。它会将范围中的每个数相乘，直到范围结束。
+    (1 ..= num).product()
 }
 
 fn main() {

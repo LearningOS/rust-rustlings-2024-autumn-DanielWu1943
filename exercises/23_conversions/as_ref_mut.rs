@@ -5,20 +5,26 @@
 // Obtain the number of bytes (not characters) in the given argument
 // (`.len()` returns the number of bytes in a string).
 // TODO: Add the `AsRef` trait appropriately as a trait bound.
-fn byte_counter<T>(arg: T) -> usize {
+use std::convert::{AsRef, AsMut};
+//<T: AsRef<str>>：让 T 实现 AsRef<str>，这样 T 既可以是 String 也可以是 &str
+//.as_ref() 将 T 转换为 &str，然后 .len() 计算字节数。
+fn byte_counter<T: AsRef<str>>(arg: T) -> usize {
     arg.as_ref().len()
 }
 
 // Obtain the number of characters (not bytes) in the given argument.
 // TODO: Add the `AsRef` trait appropriately as a trait bound.
-fn char_counter<T>(arg: T) -> usize {
+//.chars().count() 获取字符数
+fn char_counter<T: AsRef<str>>(arg: T) -> usize {
     arg.as_ref().chars().count()
 }
 
 // Squares a number using `as_mut()`.
 // TODO: Add the appropriate trait bound.
-fn num_sq<T>(arg: &mut T) {
+//让 T 实现 AsMut<u32>，这样 T 可以是 Box<u32> 或者 &mut u32
+fn num_sq<T: AsMut<u32>>(arg: &mut T) {
     // TODO: Implement the function body.
+    *arg.as_mut() = *arg.as_mut() * *arg.as_mut();
 }
 
 fn main() {

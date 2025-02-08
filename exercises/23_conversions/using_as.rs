@@ -5,7 +5,9 @@
 fn average(values: &[f64]) -> f64 {
     let total = values.iter().sum::<f64>();
     // TODO: Make a conversion before dividing.
-    total / values.len()
+    //Rust除法默认返回整数，需要用as f64完成浮点数的类型转换
+    total / values.len() as f64//添加as f64完成类型转换。
+    
 }
 
 fn main() {
